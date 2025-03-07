@@ -1,0 +1,11 @@
+{
+  "name": "js-recap-assignment",
+  "version": "1.0.0",
+  "description": "Autograding for GitHub Classroom",
+  "main": "grade.js",
+  "type": "module",
+  "scripts": {
+    "test": "node grade.js"
+  },
+  "dependencies": {}
+}
