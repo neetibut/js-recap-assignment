@@ -1,13 +1,17 @@
-const fs = require("fs");
+import fs from "fs";
 
+// Check if README.md exists
 const readmePath = "README.md";
-if (!fs.existsSync(readmePath)) {
+try {
+  await fs.promises.access(readmePath);
+} catch (error) {
   console.error("❌ README.md not found.");
   console.log("[autograding-result] README.md existence: 0/1");
   process.exit(1);
 }
 
-const content = fs.readFileSync(readmePath, "utf-8");
+// Read file content
+const content = await fs.promises.readFile(readmePath, "utf-8");
 
 let totalScore = 0;
 let maxScore = 2; // Adjust this based on the number of tests
@@ -24,7 +28,7 @@ if (wordCount >= 50) {
 }
 
 // ✅ Check for JavaScript concepts (1 point)
-const regex = /\b(data types?|variables?|conditionals?)\b/gi; // ✅ Fixed Regex
+const regex = /\b(data types?|variables?|conditionals?)\b/gi;
 const matches = content.match(regex);
 if (matches) {
   console.log(`✅ JavaScript concepts detected: ${matches.join(", ")}`);
@@ -41,3 +45,4 @@ if (matches) {
 console.log(`[autograding-result] Total Score: ${totalScore}/${maxScore}`);
 
 process.exit(totalScore === maxScore ? 0 : 1);
+
