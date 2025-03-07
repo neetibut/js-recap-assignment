@@ -14,17 +14,17 @@ let maxScore = 2; // Adjust this based on the number of tests
 
 // ✅ Check word count (1 point)
 const wordCount = content.split(/\s+/).length;
-if (wordCount >= 50) {
+if (wordCount >= 100) {
   console.log(`✅ Word count: ${wordCount} (PASS)`);
   totalScore += 1;
   console.log("[autograding-result] Word Count Check: 1/1");
 } else {
-  console.error(`❌ README.md has only ${wordCount} words. Minimum required: 50.`);
+  console.error(`❌ README.md has only ${wordCount} words. Minimum required: 100.`);
   console.log("[autograding-result] Word Count Check: 0/1");
 }
 
 // ✅ Check for JavaScript concepts (1 point)
-const regex = /(?i)\b(data types?|variables?|conditionals?)\b/g;
+const regex = /\b(data types?|variables?|conditionals?)\b/gi; // ✅ Fixed Regex
 const matches = content.match(regex);
 if (matches) {
   console.log(`✅ JavaScript concepts detected: ${matches.join(", ")}`);
@@ -41,4 +41,3 @@ if (matches) {
 console.log(`[autograding-result] Total Score: ${totalScore}/${maxScore}`);
 
 process.exit(totalScore === maxScore ? 0 : 1);
-
