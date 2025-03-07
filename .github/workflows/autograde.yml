@@ -1,13 +1,13 @@
-name: AutoGrade README
+name: Custom README Autograder
 
-on: [push, pull_request]  # Runs grading on each submission
+on: [push, pull_request]
 
 jobs:
   autograde:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3  # Clones the student's repo
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -15,7 +15,7 @@ jobs:
           node-version: 18
 
       - name: Install Dependencies
-        run: npm install  # Install dependencies (if needed)
+        run: npm install || echo "No dependencies needed"
 
       - name: Run Grading Script
-        run: node grade.js  # Run the grading script
+        run: node grade.js
